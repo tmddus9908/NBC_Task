@@ -93,6 +93,18 @@ public:
 		}
 	};
 };
+Animal* createRandomAnimal()
+{
+	int randomNum = rand() % 3;
+	switch (randomNum)
+	{
+		case 0: return new Dog();
+		case 1: return new Cat();
+		case 2: return new Cow();
+		default:
+			break;
+	}
+}
 int main()
 {
 	vector<Animal*> animals;
@@ -106,15 +118,9 @@ int main()
 		delete animals[i];
 
 	Zoo* zoo = new Zoo();
-	zoo->addAnimal(new Dog());
-	zoo->addAnimal(new Dog());
-	zoo->addAnimal(new Cat());
-	zoo->addAnimal(new Cat());
-	zoo->addAnimal(new Cow());
-	zoo->addAnimal(new Cow());
-	zoo->addAnimal(new Dog());
-	zoo->addAnimal(new Cat());
-
+	for (int i = 0; i < 10; i++)
+		zoo->addAnimal(createRandomAnimal());
+	
 	zoo->performActions();
 
 	delete zoo;
